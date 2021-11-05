@@ -1,38 +1,103 @@
-.App {
-  text-align: center;
+* { 
+  margin: 0;
+  padding : 0;
+  background-color: darkred;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body { 
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbarItem > .active {
+  border-bottom: 5px solid #ff6a00;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+@font-face {
+  font-family: 'Barlow-Regular';
+  src: local('Barlow-Regular'), url(./assets/fonts/Barlow-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'SyneMono-Regular';
+  src: local('SyneMono-Regular'), url(./assets/fonts/SyneMono-Regular.ttf) format('truetype');
+}
+
+.button {
+  color: #494949;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  font-size: 20px;
+  border: 4px solid #494949;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  cursor : pointer;
+}
+
+.button:hover {
+  color: "black";
+  background: #f6b93b;
+  border-color: #f6b93b;
+  transition: all 0.4s ease 0s;
+}
+
+.button_red {
+  color: #494949;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  font-size: 20px;
+  border: 4px solid red;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  cursor : pointer;
+}
+
+.button_red:hover {
   color: white;
+  background: red;
+  border-color: white;
+  transition: all 0.4s ease 0s;
 }
 
-.App-link {
-  color: #61dafb;
+.button_blue {
+  color: #494949;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  font-size: 20px;
+  border: 4px solid darkblue;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  cursor : pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button_blue:hover {
+  color: white;
+  background: darkblue;
+  border-color: white;
+  transition: all 0.4s ease 0s;
+}
+
+.button_green {
+  color: #494949;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  font-size: 20px;
+  border: 4px solid green;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  cursor : pointer;
+}
+
+.button_green:hover {
+  color: white;
+  background: green;
+  border-color: white;
+  transition: all 0.4s ease 0s;
 }
