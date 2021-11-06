@@ -29,9 +29,14 @@ const styles = {
         paddingTop : '20px',
         fontFamily : "SyneMono-Regular",
     },
-    cube : { 
-        paddingTop : '100px',
-    }
+    // comics : { 
+    //     display : 'flex',
+    //     width : '30%',
+    //     justifyContent : 'left',
+    //     alignItems : 'left',
+    //     flexDirection : 'row',
+    //     paddingTop : '40px',
+    // }
 }
 
 const HomePage = () => {
@@ -53,10 +58,11 @@ const HomePage = () => {
             <h2 style={styles.h2}> Below you can find a list of all the new Marvel comics releases. </h2>
             <h2 style={styles.h2}> Do you have an all time favorite? Our catalog probably has it too! </h2>
             {comics !== [] ? comics.map(comic => (
-                <div>
-              <p key={comic.id}>  {comic.title} {comic.issueNumber} </p>
-              <img src={comic.images + "/portrait_fantastic.jpg"} alt="Marvel Comic" />
-              </div>
+            <div key={comic.id} style={styles.comics}>
+              <h3> Title : {comic.title} </h3>
+              <h3> Issue Number : {comic.issueNumber} </h3>
+              <img src={comic.thumbnail['path'] + "/portrait_fantastic." + comic.thumbnail['extension']} alt="Marvel Comic" />
+            </div>
             )) : null}
         </div>
     )
