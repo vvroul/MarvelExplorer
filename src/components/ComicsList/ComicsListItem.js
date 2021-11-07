@@ -36,7 +36,6 @@ const ComicsListItem = ({ comics, comic, index }) => {
         style={styles.item}
         width="100%"
         height="auto"
-        maxWidth="100%"
         display="inline-block"
         src={
           comics[index].thumbnail["path"] +

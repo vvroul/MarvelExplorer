@@ -1,5 +1,6 @@
 import React from "react";
 import ComicsListItem from "./ComicsListItem";
+<script src="https://polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"></script>;
 
 const styles = {
   comics: {

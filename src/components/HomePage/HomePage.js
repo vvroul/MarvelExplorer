@@ -27,7 +27,12 @@ const HomePage = () => {
         ? comics.map((comic, index) => {
             index *= 5;
             return (
-              <ComicsContainer comics={comics} comic={comic} index={index} />
+              <ComicsContainer
+                key={comic.id}
+                comics={comics}
+                comic={comic}
+                index={index}
+              />
             );
           })
         : null}
