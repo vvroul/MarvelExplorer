@@ -27,15 +27,39 @@ const styles = {
     fontFamily: "SyneMono-Regular",
   },
   container: {
-    display: "flex",
+    paddingTop: "40px",
+    display : "flex",
+    flexDirection : "row",
+    backgroundColor : "yellow",
   },
   comics: {
-    flex: "30%",
-    padding: "5px",
-    width: "100%",
+    backgroundColor : "cyan",
+    display : "flex",
+    flexDirection : "row",
+    justifyContent: "center",
   },
-  item: {
-    padding: "10px",
+  itemDiv: {
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    width: "15%",
+  },
+  info : { 
+    display : "flex",
+    flexDirection : "column",
+    alignItems : "center",
+    justifyContent : "center",
+    color : "white",
+    border: "2px solid #1ABC9C",
+    padding : "5px",
+    marginTop : "5px",
+    height : "18vh",
+  },
+  item: {},
+  title : {
+    textAlign : "center",
+    fontSize : "16px",
+    color : "#F1C40F",
   },
 };
 
@@ -68,71 +92,123 @@ const HomePage = () => {
         </h2>
       </div>
       {comics !== []
-        ? comics.map((comic, index) => (
-            index *= 5,
-            console.log(comic.title),
-            <div key={comic.id} style={styles.container}>
-              <div style={styles.comics}>
-                {/* <h3> Title : {comic.title} </h3>
-              <h3> Issue Number : {comic.issueNumber} </h3> */}
-                {comics[index] !== undefined ? (
-                  <img
-                    style={styles.item}
-                    src={
-                      comics[index].thumbnail["path"] +
-                      "/portrait_incredible." +
-                      comic.thumbnail["extension"]
-                    }
-                    alt="Marvel Comic"
-                  />
-                ) : null}
-                {comics[index + 1] !== undefined ? (
-                  <img
-                    style={styles.item}
-                    src={
-                      comics[index + 1].thumbnail["path"] +
-                      "/portrait_incredible." +
-                      comic.thumbnail["extension"]
-                    }
-                    alt="Marvel Comic"
-                  />
-                ) : null}
-                {comics[index + 2] !== undefined ? (
-                  <img
-                    style={styles.item}
-                    src={
-                      comics[index + 2].thumbnail["path"] +
-                      "/portrait_incredible." +
-                      comic.thumbnail["extension"]
-                    }
-                    alt="Marvel Comic"
-                  />
-                ) : null}
-                {comics[index + 3] !== undefined ? (
-                  <img
-                    style={styles.item}
-                    src={
-                      comics[index + 3].thumbnail["path"] +
-                      "/portrait_incredible." +
-                      comic.thumbnail["extension"]
-                    }
-                    alt="Marvel Comic"
-                  />
-                ) : null}
-                {comics[index + 4] !== undefined ? (
-                  <img
-                    style={styles.item}
-                    src={
-                      comics[index + 4].thumbnail["path"] +
-                      "/portrait_incredible." +
-                      comic.thumbnail["extension"]
-                    }
-                    alt="Marvel Comic"
-                  />
-                ) : null}
-              </div>
-            </div>
-          ))
+        ? comics.map(
+            (comic, index) => (
+              (index *= 5),
+              console.log(comic.title),
+              (
+                <div key={comic.id} style={styles.container}>
+                  <div style={styles.comics}>
+                    {comics[index] !== undefined ? (
+                      <div style={styles.itemDiv}>
+                        <img
+                          style={styles.item}
+                          src={
+                            comics[index].thumbnail["path"] +
+                            "/portrait_incredible." +
+                            comic.thumbnail["extension"]
+                          }
+                          alt="Marvel Comic"
+                        />
+                        <div style={styles.info}>  
+                          <span style={styles.title}> {comics[index].title} </span>
+                          <span> Issue : {comics[index].issueNumber} </span>
+                          <span>
+                            {" "}
+                            Price : {comics[index].prices[0]["price"]}$
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+                    {comics[index + 1] !== undefined ? (
+                      <div style={styles.itemDiv}>
+                        <img
+                          style={styles.item}
+                          src={
+                            comics[index + 1].thumbnail["path"] +
+                            "/portrait_incredible." +
+                            comic.thumbnail["extension"]
+                          }
+                          alt="Marvel Comic"
+                        />
+                        <div style={styles.info}>  
+                          <span style={styles.title}> {comics[index + 1].title} </span>
+                          <span> Issue : {comics[index + 1].issueNumber} </span>
+                          <span>
+                            {" "}
+                            Price : {comics[index + 1].prices[0]["price"]}$
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+                    {comics[index + 2] !== undefined ? (
+                      <div style={styles.itemDiv}>
+                        <img
+                          style={styles.item}
+                          src={
+                            comics[index + 2].thumbnail["path"] +
+                            "/portrait_incredible." +
+                            comic.thumbnail["extension"]
+                          }
+                          alt="Marvel Comic"
+                        />
+                        <div style={styles.info}>  
+                          <span style={styles.title}> {comics[index + 2].title} </span>
+                          <span> Issue : {comics[index + 2].issueNumber} </span>
+                          <span>
+                            {" "}
+                            Price : {comics[index + 2].prices[0]["price"]}$
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+                    {comics[index + 3] !== undefined ? (
+                      <div style={styles.itemDiv}>
+                        <img
+                          style={styles.item}
+                          src={
+                            comics[index + 3].thumbnail["path"] +
+                            "/portrait_incredible." +
+                            comic.thumbnail["extension"]
+                          }
+                          alt="Marvel Comic"
+                        />
+                        <div style={styles.info}>  
+                          <span style={styles.title}> {comics[index + 3].title} </span>
+                          <span> Issue : {comics[index + 3].issueNumber} </span>
+                          <span>
+                            {" "}
+                            Price : {comics[index + 3].prices[0]["price"]}$
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+                    {comics[index + 4] !== undefined ? (
+                      <div style={styles.itemDiv}>
+                        <img
+                          style={styles.item}
+                          src={
+                            comics[index + 4].thumbnail["path"] +
+                            "/portrait_incredible." +
+                            comic.thumbnail["extension"]
+                          }
+                          alt="Marvel Comic"
+                        />
+                        <div style={styles.info}>  
+                          <span style={styles.title}> {comics[index + 4].title} </span>
+                          <span> Issue : {comics[index + 4].issueNumber} </span>
+                          <span>
+                            {" "}
+                            Price : {comics[index + 4].prices[0]["price"]}$
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+              )
+            )
+          )
         : null}
     </div>
   );
