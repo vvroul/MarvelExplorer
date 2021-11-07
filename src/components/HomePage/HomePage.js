@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import ComicsList from '../ComicsList/ComicsList'
+<script src="js/md5.min.js"></script>
 
 const styles = {
   div: {
@@ -67,12 +68,14 @@ const HomePage = () => {
   const [comics, setComics] = useState([]);
 
   useEffect(() => {
+    let md5 = require('md5');
+    let keyComb = "19c3414fb83f3b7242c9b264359c0ebcf788efe7bd56d6d10d8f49278e403ae7884dbae86"
+    let hash = md5(keyComb);
     fetch(
-      "http://gateway.marvel.com/v1/public/comics?ts=1&format=comic&formatType=comic&apikey=d56d6d10d8f49278e403ae7884dbae86"
+      `http://gateway.marvel.com/v1/public/comics?ts=1&format=comic&formatType=comic&apikey=d56d6d10d8f49278e403ae7884dbae86&hash=${hash}`
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.data.results);
         setComics(data.data.results);
       })
       .catch((error) => console.log(error));
@@ -93,10 +96,9 @@ const HomePage = () => {
       </div>
       {comics !== []
         ? comics.map(
-            (comic, index) => (
-              (index *= 5),
-              console.log(comic.title),
-              (
+            (comic, index) => {
+              index *= 5
+              return (
                 <div key={comic.id} style={styles.container}>
                   <div style={styles.comics}>
                     {comics[index] !== undefined ? (
@@ -206,8 +208,8 @@ const HomePage = () => {
                     ) : null}
                   </div>
                 </div>
-              )
-            )
+              );
+                        }
           )
         : null}
     </div>
