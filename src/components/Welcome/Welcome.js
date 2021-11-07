@@ -11,7 +11,7 @@ const styles = {
   },
   h1: {
     color: "white",
-    fontSize: "30px",
+    fontSize: "3vw",
     width: "100%",
     height: "10vh",
     display: "flex",
@@ -23,6 +23,7 @@ const styles = {
   h2: {
     color: "white",
     paddingTop: "20px",
+    fontSize: "2vw",
     fontFamily: "SyneMono-Regular",
   },
 };

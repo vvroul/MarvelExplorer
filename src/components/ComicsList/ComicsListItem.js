@@ -2,10 +2,9 @@ import React from "react";
 
 const styles = {
   itemDiv: {
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-    width: "15%",
+    display: "inline-block",
+    width: "16%",
+    margin: "0 auto",
   },
   info: {
     display: "flex",
@@ -21,16 +20,24 @@ const styles = {
   item: {},
   title: {
     textAlign: "center",
-    fontSize: "16px",
+    fontSize: "1.4vw",
     color: "#F1C40F",
+  },
+  otherInfo: {
+    textAlign: "center",
+    fontSize: "1.4vw",
   },
 };
 
 const ComicsListItem = ({ comics, comic, index }) => {
   return (
-    <div style={styles.itemDiv}>
+    <div key={comic.id} style={styles.itemDiv}>
       <img
         style={styles.item}
+        width="100%"
+        height="auto"
+        maxWidth="100%"
+        display="inline-block"
         src={
           comics[index].thumbnail["path"] +
           "/portrait_incredible." +
@@ -38,10 +45,16 @@ const ComicsListItem = ({ comics, comic, index }) => {
         }
         alt="Marvel Comic"
       />
-      <div style={styles.info}>
+      <div key={comic.id} style={styles.info}>
         <span style={styles.title}> {comics[index].title} </span>
-        <span> Issue : {comics[index].issueNumber} </span>
-        <span> Price : {comics[index].prices[0]["price"]}$</span>
+        <span style={styles.otherInfo}>
+          {" "}
+          Issue : {comics[index].issueNumber}{" "}
+        </span>
+        <span style={styles.otherInfo}>
+          {" "}
+          Price : {comics[index].prices[0]["price"]}$
+        </span>
       </div>
     </div>
   );

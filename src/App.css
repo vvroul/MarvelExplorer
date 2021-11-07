@@ -4,14 +4,6 @@
   background-color: darkred;
 }
 
-body {
-  height: 100%;
-}
-
-.navbarItem > .active {
-  border-bottom: 5px solid #ff6a00;
-}
-
 @font-face {
   font-family: "Barlow-Regular";
   src: local("Barlow-Regular"),

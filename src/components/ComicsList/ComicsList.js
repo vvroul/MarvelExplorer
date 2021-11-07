@@ -12,7 +12,7 @@ const styles = {
 
 const ComicsList = ({ comics, comic, index }) => {
   return (
-    <div style={styles.comics}>
+    <div key={comic.id} style={styles.comics}>
       {comics[index] !== undefined ? (
         <ComicsListItem comics={comics} comic={comic} index={index} />
       ) : null}
