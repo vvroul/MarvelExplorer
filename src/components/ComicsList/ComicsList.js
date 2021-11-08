@@ -4,30 +4,77 @@ import ComicsListItem from "./ComicsListItem";
 
 const styles = {
   comics: {
-    backgroundColor: "cyan",
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
   },
 };
 
-const ComicsList = ({ comics, comic, index }) => {
+const ComicsList = ({
+  comics,
+  comic,
+  index,
+  loading,
+  hasMore,
+  setOffset,
+  offset,
+}) => {
   return (
     <div key={comic.id} style={styles.comics}>
       {comics[index] !== undefined ? (
-        <ComicsListItem comics={comics} comic={comic} index={index} />
+        <ComicsListItem
+          comics={comics}
+          comic={comic}
+          index={index}
+          loading={loading}
+          hasMore={hasMore}
+          setOffset={setOffset}
+          offset={offset}
+        />
       ) : null}
       {comics[index + 1] !== undefined ? (
-        <ComicsListItem comics={comics} comic={comic} index={index + 1} />
+        <ComicsListItem
+          comics={comics}
+          comic={comic}
+          index={index + 1}
+          loading={loading}
+          hasMore={hasMore}
+          setOffset={setOffset}
+          offset={offset}
+        />
       ) : null}
       {comics[index + 2] !== undefined ? (
-        <ComicsListItem comics={comics} comic={comic} index={index + 2} />
+        <ComicsListItem
+          comics={comics}
+          comic={comic}
+          index={index + 2}
+          loading={loading}
+          hasMore={hasMore}
+          setOffset={setOffset}
+          offset={offset}
+        />
       ) : null}
       {comics[index + 3] !== undefined ? (
-        <ComicsListItem comics={comics} comic={comic} index={index + 3} />
+        <ComicsListItem
+          comics={comics}
+          comic={comic}
+          index={index + 3}
+          loading={loading}
+          hasMore={hasMore}
+          setOffset={setOffset}
+          offset={offset}
+        />
       ) : null}
       {comics[index + 4] !== undefined ? (
-        <ComicsListItem comics={comics} comic={comic} index={index + 4} />
+        <ComicsListItem
+          comics={comics}
+          comic={comic}
+          index={index + 4}
+          loading={loading}
+          hasMore={hasMore}
+          setOffset={setOffset}
+          offset={offset}
+        />
       ) : null}
     </div>
   );

@@ -6,14 +6,29 @@ const styles = {
     paddingTop: "40px",
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "yellow",
   },
 };
 
-const ComicsContainer = ({ comics, comic, index }) => {
+const ComicsContainer = ({
+  comics,
+  comic,
+  index,
+  loading,
+  hasMore,
+  setOffset,
+  offset,
+}) => {
   return (
     <div key={comic.id} style={styles.container}>
-      <ComicsList comics={comics} comic={comic} index={index} />
+      <ComicsList
+        comics={comics}
+        comic={comic}
+        index={index}
+        loading={loading}
+        hasMore={hasMore}
+        setOffset={setOffset}
+        offset={offset}
+      />
     </div>
   );
 };

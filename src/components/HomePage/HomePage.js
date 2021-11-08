@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState } from "react";
 import Welcome from "../Welcome/Welcome.js";
 import ComicsContainer from "../ComicsContainer/ComicsContainer.js";
 import useLoadComics from "../hooks/useLoadComics/useLoadComics.js";
@@ -15,26 +15,12 @@ const styles = {
 const HomePage = () => {
   const [offset, setOffset] = useState(0);
   const { comics, loading, error, hasMore } = useLoadComics(offset);
-  const observer = useRef();
-  const lastComicElementRef = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          console.log("visivle");
-          setOffset(offset + 1);
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore]
-  );
 
   return (
     <div id="Home">
       <Welcome />
-      {comics !== [] && comics !== undefined
+
+      {comics !== [] || comics !== undefined || comics === null
         ? comics.map((comic, index) => {
             index *= 5;
             return (
@@ -43,6 +29,10 @@ const HomePage = () => {
                 comics={comics}
                 comic={comic}
                 index={index}
+                loading={loading}
+                hasMore={hasMore}
+                offset={offset}
+                setOffset={setOffset}
               />
             );
           })

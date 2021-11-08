@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useCallback } from "react";
 
 const styles = {
   itemDiv: {
@@ -29,34 +29,87 @@ const styles = {
   },
 };
 
-const ComicsListItem = ({ comics, comic, index }) => {
-  return (
-    <div key={comic.id} style={styles.itemDiv}>
-      <img
-        style={styles.item}
-        width="100%"
-        height="auto"
-        display="inline-block"
-        src={
-          comics[index].thumbnail["path"] +
-          "/portrait_incredible." +
-          comic.thumbnail["extension"]
+const ComicsListItem = ({
+  comics,
+  comic,
+  index,
+  loading,
+  hasMore,
+  setOffset,
+  offset,
+}) => {
+  const observer = useRef();
+  const lastComicRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setOffset(offset + 20);
         }
-        alt="Marvel Comic"
-      />
-      <div key={comic.id} style={styles.info}>
-        <span style={styles.title}> {comics[index].title} </span>
-        <span style={styles.otherInfo}>
-          {" "}
-          Issue : {comics[index].issueNumber}{" "}
-        </span>
-        <span style={styles.otherInfo}>
-          {" "}
-          Price : {comics[index].prices[0]["price"]}$
-        </span>
-      </div>
-    </div>
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, setOffset, offset]
   );
+
+  if (comics.length === index + 1) {
+    return (
+      <div ref={lastComicRef} key={comic.id} style={styles.itemDiv}>
+        <img
+          style={styles.item}
+          width="100%"
+          height="auto"
+          display="inline-block"
+          src={
+            comics[index].thumbnail["path"] +
+            "/portrait_incredible." +
+            comic.thumbnail["extension"]
+          }
+          alt="Marvel Comic"
+        />
+        <div key={comic.id} style={styles.info}>
+          <span style={styles.title}> {comics[index].title} </span>
+          <span style={styles.otherInfo}>
+            {" "}
+            Issue : {comics[index].issueNumber}{" "}
+          </span>
+          <span style={styles.otherInfo}>
+            {" "}
+            Price : {comics[index].prices[0]["price"]}$
+          </span>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div key={comic.id} style={styles.itemDiv}>
+        <img
+          style={styles.item}
+          width="100%"
+          height="auto"
+          display="inline-block"
+          src={
+            comics[index].thumbnail["path"] +
+            "/portrait_incredible." +
+            comic.thumbnail["extension"]
+          }
+          alt="Marvel Comic"
+        />
+        <div key={comic.id} style={styles.info}>
+          <span style={styles.title}> {comics[index].title} </span>
+          <span style={styles.otherInfo}>
+            {" "}
+            Issue : {comics[index].issueNumber}{" "}
+          </span>
+          <span style={styles.otherInfo}>
+            {" "}
+            Price : {comics[index].prices[0]["price"]}$
+          </span>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default ComicsListItem;

@@ -18,15 +18,15 @@ const useLoadComics = (pageNumber) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        setComics(data.data.results);
-        setHasMore(data.data.results.lenght > 0);
+        setComics((comics) => [...comics, ...data.data.results]);
+        setHasMore(data.data.results.length > 0);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
         setError(true);
       });
-  }, [pageNumber]);
+  }, [pageNumber, comics]);
   return { comics, loading, error, hasMore };
 };
 
