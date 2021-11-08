@@ -26,7 +26,7 @@ const useLoadComics = (pageNumber) => {
         console.log(error);
         setError(true);
       });
-  }, [pageNumber, comics]);
+  }, [pageNumber]);
   return { comics, loading, error, hasMore };
 };
 
