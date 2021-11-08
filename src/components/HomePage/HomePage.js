@@ -1,29 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import Welcome from "../Welcome/Welcome.js";
 import ComicsContainer from "../ComicsContainer/ComicsContainer.js";
+import useLoadComics from "../hooks/useLoadComics/useLoadComics.js";
+
+const styles = {
+  loading: {
+    textAlign: "center",
+    marginTop: "40px",
+    fontSize: "2vw",
+    color: "white",
+  },
+};
 
 const HomePage = () => {
-  const [comics, setComics] = useState([]);
-
-  useEffect(() => {
-    let md5 = require("md5");
-    let keyComb =
-      "19c3414fb83f3b7242c9b264359c0ebcf788efe7bd56d6d10d8f49278e403ae7884dbae86";
-    let hash = md5(keyComb);
-    fetch(
-      `http://gateway.marvel.com/v1/public/comics?ts=1&format=comic&formatType=comic&apikey=d56d6d10d8f49278e403ae7884dbae86&hash=${hash}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setComics(data.data.results);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+  const [offset, setOffset] = useState(0);
+  const { comics, loading, error, hasMore } = useLoadComics(offset);
+  const observer = useRef();
+  const lastComicElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          console.log("visivle");
+          setOffset(offset + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   return (
     <div id="Home">
       <Welcome />
-      {comics !== []
+      {comics !== [] && comics !== undefined
         ? comics.map((comic, index) => {
             index *= 5;
             return (
@@ -36,6 +47,8 @@ const HomePage = () => {
             );
           })
         : null}
+      <div style={styles.loading}> {loading && "Loading..."} </div>
+      <div style={styles.loading}> {error && "Error..."} </div>
     </div>
   );
 };
